@@ -14,7 +14,9 @@ class UpdateUserServices{
     }
 
     public function execute(UpdateUserDTO $updateUserDTO, string $id){
-        $user = $this->userRepository->find($id)->_update($updateUserDTO);
+        $user = $this->userRepository->update($updateUserDTO, $id);
+
+        return $user;
     }
 
 }

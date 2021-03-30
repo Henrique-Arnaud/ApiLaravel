@@ -63,11 +63,13 @@ class UserController extends Controller
             $deleteUserService->execute(
                 $id
             );
+
+            return response()->json([], 204);
         }
         catch(Exception $e){
             return response()->json([
                 "error"=>$e->getMessage()
-            ], 204);
+            ], 400);
         }
     }
 
@@ -81,7 +83,7 @@ class UserController extends Controller
 
         $user = $updateUserServices->execute($updateUserDTO, $id);
 
-        return $user;
+        return response()->json($user);
         }
         catch(Exception $e){
             return response()->json([
